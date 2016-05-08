@@ -61,8 +61,8 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/skills/main.py
 
 RUN \
   cd /mycroft/ai && \
-  nohup ./start.sh service  && \
-  nohup ./start.sh skills  && \
-  nohup ./start.sh voice &
+  tmux new-session -d './start.sh service' && \
+  tmux new-session -d './start.sh skills'  && \
+  tmux new-session -d './start.sh voice'
 
 EXPOSE 5000
