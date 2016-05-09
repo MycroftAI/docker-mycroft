@@ -46,6 +46,7 @@ RUN \
   cd /mycroft/ai && \
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
+  pip install supervisor && \
   cd .. && \
   cd /mycroft
 
