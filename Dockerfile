@@ -42,7 +42,7 @@ RUN \
   cd /mycroft && \
 
   # Checkout Mycroft
-  git clone https://user:pass@github.com/MycroftAI/mycroft.git /mycroft/ai/ && \
+  git clone https://paulscott56:pongid56@github.com/MycroftAI/mycroft.git /mycroft/ai/ && \
   cd /mycroft/ai && \
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
