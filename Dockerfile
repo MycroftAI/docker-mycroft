@@ -16,7 +16,7 @@ RUN \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
   apt-get install -y python python-dev python-pip && \
-  apt-get install -y libtool autoconf bison swig && \
+  apt-get install -y libtool autoconf bison swig alsa-utils && \
   apt-get install -y libglib2.0-dev portaudio19-dev python-dev mpg123 espeak supervisor && \
   rm -rf /var/lib/apt/lists/* && \
   mkdir /mycroft && \
