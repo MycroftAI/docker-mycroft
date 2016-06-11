@@ -18,6 +18,7 @@ RUN \
   apt-get install -y python python-dev python-pip && \
   apt-get install -y libtool autoconf bison swig alsa-utils && \
   apt-get install -y libglib2.0-dev portaudio19-dev python-dev mpg123 espeak supervisor && \
+  apt-get install -y libffi6 libffi-dev libssl-dev && \
   rm -rf /var/lib/apt/lists/* && \
   mkdir /mycroft && \
   TOP=/mycroft && \
