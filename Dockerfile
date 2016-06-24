@@ -64,4 +64,4 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/skills/main.py
 
 EXPOSE 5000 8000
 
-CMD ["/usr/bin/supervisord", "-c",  "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/bin/bash"]
