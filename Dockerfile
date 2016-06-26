@@ -62,6 +62,6 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/speech/main.py
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/messagebus/service/main.py
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/skills/main.py
 
-EXPOSE 5000 8000
+EXPOSE 8000
 
 CMD ["/bin/bash"]
