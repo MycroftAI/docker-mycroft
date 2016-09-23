@@ -48,8 +48,7 @@ RUN \
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
   pip install supervisor && \
-  cd scripts && \
-  ./install-mimic.sh
+  ./scripts/install-mimic.sh
 
   # install pygtk for desktop_launcher skill (will have to do this manually WIP)
   
