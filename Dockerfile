@@ -45,6 +45,7 @@ RUN \
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
+  git fetch && git checkout dev && \
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
   pip install supervisor && \
