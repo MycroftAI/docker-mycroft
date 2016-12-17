@@ -15,32 +15,33 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  apt-get install -y python python-dev python-pip && \
-  apt-get install -y libtool autoconf bison swig alsa-utils && \
-  apt-get install -y libglib2.0-dev portaudio19-dev mpg123 espeak supervisor && \
+  apt-get install -y python python-dev python-pip python-virtualenv python-setuptools python-gobject-dev && \
+  apt-get install -y virtualenvwrapper
+  apt-get install -y libtool autoconf bison swig alsa-utils libglib2.0-dev s3cmd && \
+  apt-get install -y libglib2.0-dev portaudio19-dev mpg123 espeak supervisor screen flac && \
   apt-get install -y libffi6 libffi-dev libssl-dev && \
   rm -rf /var/lib/apt/lists/* && \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
 
-  git clone --recursive https://github.com/cmusphinx/pocketsphinx-python && \
-  cd /mycroft/pocketsphinx-python/sphinxbase && \
-  ./autogen.sh && \
-  ./configure && \
-  make && \
-  cd /mycroft/pocketsphinx-python/pocketsphinx && \
-  ./autogen.sh && \
-  ./configure && \
-  make && \
-  cd ../../ && \
-  cd /mycroft && \  
+  #git clone --recursive https://github.com/cmusphinx/pocketsphinx-python && \
+  #cd /mycroft/pocketsphinx-python/sphinxbase && \
+  #./autogen.sh && \
+  #./configure && \
+  #make && \
+  #cd /mycroft/pocketsphinx-python/pocketsphinx && \
+  #./autogen.sh && \
+  #./configure && \
+  #make && \
+  #cd ../../ && \
+  #cd /mycroft && \  
   
   # build and install pocketsphinx python bindings
-  cd /mycroft/pocketsphinx-python && \
-  python setup.py install && \
-  cd ../ && \
-  cd /mycroft && \
+  #cd /mycroft/pocketsphinx-python && \
+  #python setup.py install && \
+  #cd ../ && \
+  #cd /mycroft && \
 
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
