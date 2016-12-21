@@ -46,7 +46,7 @@ RUN \
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
-  git fetch && git checkout dev && \
+  # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
   pip install supervisor && \
