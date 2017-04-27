@@ -1,9 +1,9 @@
 FROM ubuntu:16.04
 
+MAINTAINER  Paul Scott <pscott209@gmail.com>
+
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
-
-MAINTAINER  Paul Scott <pscott209@gmail.com>
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY build_host_setup_debian.sh /usr/local/bin/
