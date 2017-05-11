@@ -10,7 +10,7 @@
 3. If you would rather have an interactive session (for testing, coding, or whatever) with the docker container, start the container with 
    ```docker run --device /dev/snd:/dev/snd --privileged -it <youruser>/mycroft /bin/bash```
    
-4. Now you can run /mycroft/ai/start.sh  to start up the service, and then run cli to test it.  The available syntax for this command is:
+4. Now you can run /mycroft/ai/mycroft.sh  to start up the service, and then run cli to test it.  The available syntax for this command is:
 
 ```
 Quickly start, stop or restart Mycroft's esential services in detached screens
