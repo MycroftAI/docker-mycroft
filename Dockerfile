@@ -34,11 +34,16 @@ RUN \
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
   dpkg -i /usr/local/bin/mimic-amd64_1.2.0.2-1.deb && \
+  mkdir /mycroft/ai/mimic && \
+  mkdir /mycroft/ai/mimic/bin && \
+  mv /usr/local/bin/mimic /mycroft/ai/mimic/bin && \
   dpkg -i /usr/local/bin/mycroft-core-amd64_0.8.12-1.deb && \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+WORKDIR /mycroft/ai
+ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 EXPOSE 8000
 
