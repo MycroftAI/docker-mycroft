@@ -7,10 +7,21 @@
 2. Build the docker image with 
    ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
 
-3. If you would rather have an interactive session (for testing, coding, or whatever) with the docker container, start the container with 
+3. If you would rather have an interactive session (for testing, coding, or whatever) with the docker container, start the container with the following, then you would need to start mycroft with the /mycroft/ai/mycroft.sh script.
    ```docker run --device /dev/snd:/dev/snd --privileged -it <youruser>/mycroft /bin/bash```
    
-4. Now you can run /mycroft/ai/mycroft.sh  to start up the service, and then run cli to test it.  The available syntax for this command is:
+4. Otherwise run the following to start up mycroft and an active cli session in the container:
+   ```docker run --device /dev/snd:/dev/snd -d -it <\youruser\>/mycroft```
+
+5. Confirm via docker ps that your container is up and serving port 8000:
+
+
+```
+docker ps
+CONTAINER ID        IMAGE                                                COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+692219e23bf2        user/mycroft                                    "/mycroft/ai/mycro..."   3 seconds ago       Up 1 second         8000/tcp                                         amazing_borg
+```
+
 
 ```
 Quickly start, stop or restart Mycroft's esential services in detached screens
