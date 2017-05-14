@@ -44,4 +44,4 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 EXPOSE 8000
 
-CMD ["/bin/bash"]
+CMD ["/mycroft/ai/mycroft.sh start -c"]
