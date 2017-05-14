@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTAINER  Paul Scott <pscott209@gmail.com>
-
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
