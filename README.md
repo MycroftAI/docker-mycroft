@@ -1,6 +1,6 @@
 # Mycroft Docker Development Environment
 
-### How to build and run
+## How to build and run
 
 1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
 
@@ -21,6 +21,23 @@ docker ps
 CONTAINER ID        IMAGE                                                COMMAND                  CREATED             STATUS              PORTS                                            NAMES
 692219e23bf2        user/mycroft                                    "/mycroft/ai/mycro..."   3 seconds ago       Up 1 second         8000/tcp                                         amazing_borg
 ```
+
+### CLI Access
+You can interact with the CLI of the container by running the following command, this will connect you to the running container:
+
+```
+docker attach container_name
+```
+
+You can exit this container safely and leave it running by hitting cntrl + p + q
+
+
+You can get the container name via:
+
+```
+docker ps
+```
+
 
 
 ```
