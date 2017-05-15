@@ -44,4 +44,5 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 EXPOSE 8000
 
-Entrypoint ["/mycroft/ai/mycroft.sh", "start", "-d"]
+CMD ["/mycroft/ai/mycroft.sh", "start"]
+CMD ["/bin/bash"]
