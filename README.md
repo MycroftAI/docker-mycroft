@@ -6,12 +6,12 @@
 
 2. Build the docker image with 
    ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
-
-3. If you would rather have an interactive session (for testing, coding, or whatever) with the docker container, start the container with the following, then you would need to start mycroft with the /mycroft/ai/mycroft.sh script.
-   ```docker run --device /dev/snd:/dev/snd --privileged -it <youruser>/mycroft /bin/bash```
    
-4. Otherwise run the following to start up mycroft and an active cli session in the container:
+3. Run the following to start up mycroft and an bash shell in the container:
    ```docker run --device /dev/snd:/dev/snd -d -it <\youruser\>/mycroft```
+   
+4. By default the system will have a interactive bash shell that you can get to via the below command after running the container:
+   ```docker exec -it container_name /bin/bash```
 
 5. Confirm via docker ps that your container is up and serving port 8000:
 
@@ -26,7 +26,7 @@ CONTAINER ID        IMAGE                                                COMMAND
 You can interact with the CLI of the container by running the following command, this will connect you to the running container:
 
 ```
-docker attach container_name
+docker exec -it container_name /bin/bash
 ```
 
 You can exit this container safely and leave it running by hitting cntrl + p + q
