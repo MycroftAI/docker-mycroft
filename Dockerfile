@@ -1,21 +1,25 @@
 FROM ubuntu:16.04
 
-MAINTAINER  Paul Scott <pscott209@gmail.com>
-
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY build_host_setup_debian.sh /usr/local/bin/
+COPY mycroft-core-amd64_0.8.12-1.deb /usr/local/bin
+COPY mimic-amd64_1.2.0.2-1.deb /usr/local/bin
 
 # Install Server Dependencies for Mycroft
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get -y install git && \
+  apt-get install -yq --no-install-recommends \
+  dnsmasq \
+  avrdude \
+  jq \
+  pulseaudio && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_debian.sh && \
+
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
@@ -26,20 +30,18 @@ RUN \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
-  pip install supervisor && \
-  ./scripts/install-mimic.sh
+  dpkg -i /usr/local/bin/mimic-amd64_1.2.0.2-1.deb && \
+  mkdir /mycroft/ai/mimic && \
+  mkdir /mycroft/ai/mimic/bin && \
+  mv /usr/local/bin/mimic /mycroft/ai/mimic/bin && \
+  dpkg -i /usr/local/bin/mycroft-core-amd64_0.8.12-1.deb && \
+  apt-get install -f && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
-
-# Set environment variables.
-ENV HOME /mycroft
-
-# Define working directory.
-WORKDIR /mycroft
-
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/speech/main.py
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/messagebus/service/main.py
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai/mycroft/client/skills/main.py
+WORKDIR /mycroft/ai
+ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 EXPOSE 8000
 
-CMD ["/bin/bash"]
+Entrypoint ["/mycroft/ai/mycroft.sh", "start", "-d"]
