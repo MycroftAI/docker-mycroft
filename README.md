@@ -13,13 +13,13 @@
 4. Want a interactive cli session to register the device and test things, then run the following and type pair my device to start, we are mounting a local filesystem into the container so we can store our Identity file to reuse this same device over and over on new containers:
    ```docker run -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft <\youruser\>/mycroft /bin/bash /mycroft/ai/mycroft.sh start -d```
 
-4. Confirm via docker ps that your container is up and serving port 8000:
+4. Confirm via docker ps that your container is up and serving port 8181:
 
 
 ```
 docker ps
 CONTAINER ID        IMAGE                                                COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-692219e23bf2        user/mycroft                                    "/mycroft/ai/mycro..."   3 seconds ago       Up 1 second         8000/tcp                                         amazing_borg
+692219e23bf2        user/mycroft                                    "/mycroft/ai/mycro..."   3 seconds ago       Up 1 second         8181/tcp                                         amazing_borg
 ```
 
 ### CLI Access
