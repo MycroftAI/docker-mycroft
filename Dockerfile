@@ -14,6 +14,7 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
+  supervisor \
   dnsmasq \
   avrdude \
   jq \
@@ -41,9 +42,9 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
-
 EXPOSE 8000
+CMD ["/usr/bin/supervisord"]
 
-CMD ["/bin/bash"]
