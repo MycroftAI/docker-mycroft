@@ -8,7 +8,7 @@
    ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
    
 3. Run the following to start up mycroft:
-   ```docker run --device /dev/snd:/dev/snd -d -it <\youruser\>/mycroft```
+   ```docker run --device /dev/snd:/dev/snd -itd <\youruser\>/mycroft```
 
 4. Confirm via docker ps that your container is up and serving port 8000:
 
@@ -20,7 +20,7 @@ CONTAINER ID        IMAGE                                                COMMAND
 ```
 
 ### CLI Access
-You can interact with the CLI of the container by running the following command, this will connect you to the running container:
+You can interact with the CLI of the container by running the following command, this will connect you to the running container via bash:
 
 ```
 docker exec -it container_name /bin/bash
