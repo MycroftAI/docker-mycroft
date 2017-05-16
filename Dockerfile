@@ -44,5 +44,5 @@ RUN \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
-EXPOSE 8000
+EXPOSE 8181
 CMD ["/usr/bin/supervisord"]
