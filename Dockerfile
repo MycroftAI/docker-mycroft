@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-COPY supervisord.conf /etc/supervisor/supervisord.conf
+
 COPY build_host_setup_debian.sh /usr/local/bin/
 COPY mycroft-core-amd64_0.8.12-1.deb /usr/local/bin
 COPY mimic-amd64_1.2.0.2-1.deb /usr/local/bin
@@ -32,7 +32,6 @@ RUN \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip==7.1.2 && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
-  pip install supervisor && \
   dpkg -i /usr/local/bin/mimic-amd64_1.2.0.2-1.deb && \
   mkdir /mycroft/ai/mimic && \
   mkdir /mycroft/ai/mimic/bin && \
@@ -47,4 +46,3 @@ WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8000
 CMD ["/usr/bin/supervisord"]
-
