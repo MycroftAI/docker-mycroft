@@ -11,7 +11,7 @@
    ```docker run --device /dev/snd:/dev/snd -itd <\youruser\>/mycroft```
    
 4. Want a interactive cli session to register the device and test things, then run the following and type pair my device to start, we are mounting a local filesystem into the container so we can store our Identity file to reuse this same device over and over on new containers:
-   ```docker run -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft btotharye/mycroft-test /bin/bash /mycroft/ai/mycroft.sh start -d```
+   ```docker run -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft <\youruser\>/mycroft /bin/bash /mycroft/ai/mycroft.sh start -d```
 
 4. Confirm via docker ps that your container is up and serving port 8000:
 
