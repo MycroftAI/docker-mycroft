@@ -7,13 +7,10 @@
 2. Build the docker image with 
    ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
    
-3. Run the following to start up mycroft and an bash shell in the container:
+3. Run the following to start up mycroft:
    ```docker run --device /dev/snd:/dev/snd -d -it <\youruser\>/mycroft```
-   
-4. By default the system will have a interactive bash shell that you can get to via the below command after running the container:
-   ```docker exec -it container_name /bin/bash```
 
-5. Confirm via docker ps that your container is up and serving port 8000:
+4. Confirm via docker ps that your container is up and serving port 8000:
 
 
 ```
