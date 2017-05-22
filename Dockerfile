@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
+
 COPY build_host_setup_debian.sh /usr/local/bin/
 COPY mycroft-core-amd64_0.8.12-1.deb /usr/local/bin
 COPY mimic-amd64_1.2.0.2-1.deb /usr/local/bin
@@ -13,6 +14,7 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
+  supervisor \
   dnsmasq \
   avrdude \
   jq \
@@ -39,9 +41,8 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
-
-EXPOSE 8000
-
-Entrypoint ["/mycroft/ai/mycroft.sh", "start", "-d"]
+EXPOSE 8181
+CMD ["/usr/bin/supervisord"]
