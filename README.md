@@ -5,13 +5,13 @@
 1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
 
 2. Build the docker image with 
-   ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
+   ```docker build -t ${USER}/mycroft .``` in the directory that you have checked out.
    
 3. Run the following to start up mycroft:
-   ```docker run --device /dev/snd:/dev/snd -itd <\youruser\>/mycroft```
+   ```docker run --device /dev/snd:/dev/snd -itd ${USER}/mycroft```
    
 4. Want a interactive cli session to register the device and test things, then run the following and type pair my device to start, we are mounting a local filesystem into the container so we can store our Identity file to reuse this same device over and over on new containers:
-   ```docker run -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft <\youruser\>/mycroft /bin/bash /mycroft/ai/mycroft.sh start -d```
+   ```docker run -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft ${USER}/mycroft /bin/bash /mycroft/ai/mycroft.sh start -d```
 
 5. Confirm via docker ps that your container is up and serving port 8181:
 
