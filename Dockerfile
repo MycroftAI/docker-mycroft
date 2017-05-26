@@ -19,6 +19,7 @@ RUN \
   avrdude \
   jq \
   pulseaudio && \
+  alsa-utils && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_debian.sh && \
 
