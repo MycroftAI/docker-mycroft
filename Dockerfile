@@ -18,7 +18,7 @@ RUN \
   dnsmasq \
   avrdude \
   jq \
-  pulseaudio && \
+  pulseaudio \
   alsa-utils && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_debian.sh && \
