@@ -18,10 +18,10 @@ RUN \
   dnsmasq \
   avrdude \
   jq \
-  pulseaudio && \
+  pulseaudio \
+  alsa-utils && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_debian.sh && \
-
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
@@ -45,4 +45,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-CMD ["/usr/bin/supervisord"]
+CMD ["/mycroft/ai/mycroft.sh start -c"]

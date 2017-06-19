@@ -2,11 +2,11 @@
 
 ## How to build and run
 
-1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
+1. Git pull this repository - ```git clone https://wwwin-gitlab-sjc.cisco.com/brihopki/thehive.git```
 
-2. Build the docker image with 
+2. Build the docker image with
    ```docker build -t <yourusername>/mycroft .``` in the directory that you have checked out.
-   
+
 3. Run the following to start up mycroft:
    ```docker run --device /dev/snd:/dev/snd -itd <\youruser\>/mycroft```
 
@@ -55,4 +55,3 @@ screen tips:
             press ctrl + a, ctrl + d to detace the screen again
             See the screen man page for more details
 ```
-
