@@ -20,7 +20,7 @@ RUN \
   alsa-utils && \
   cd /usr/local/bin && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
-  bash -c 'echo "deb http://repo2.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo2.mycroft.ai.list' && \
+  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   apt-get update && \
   apt-get install -yq mycroft-core && \
   apt-get install -f && \
