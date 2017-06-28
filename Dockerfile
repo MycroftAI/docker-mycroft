@@ -33,5 +33,5 @@ RUN \
 
 
 WORKDIR /home/mycroft
-EXPOSE 8181
+EXPOSE env.PORT
 CMD ["/bin/bash"]
