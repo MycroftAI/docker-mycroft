@@ -33,4 +33,5 @@ RUN \
 
 WORKDIR /home/mycroft
 EXPOSE 8181
+RUN ["chmod", "+x", "usr/local/bin/pair.sh"]
 ENTRYPOINT ["/usr/local/bin/pair.sh"]
