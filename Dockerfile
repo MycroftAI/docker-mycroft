@@ -4,9 +4,7 @@ ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
 #For now copying deb files over to install
-COPY build_host_setup_debian.sh /usr/local/bin/
-COPY mycroft-core-amd64_0.8.12-1.deb /usr/local/bin
-COPY mimic-amd64_1.2.0.2-1.deb /usr/local/bin
+COPY pair.sh /usr/local/bin/
 
 # Install Server Dependencies for Mycroft
 RUN \
@@ -28,9 +26,11 @@ RUN \
   apt-get install -yq mycroft-core && \
   apt-get install -f && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  service mycroft-messagebus start && \
+  service mycroft-skills start
 
 
 WORKDIR /home/mycroft
 EXPOSE 8181
-CMD ["/bin/bash"]
+ENTRYPOINT ["/usr/local/bin/pair.sh"]
