@@ -15,6 +15,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   supervisor \
+  apt-transport-https \
   dnsmasq \
   avrdude \
   jq \
