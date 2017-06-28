@@ -31,8 +31,7 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-WORKDIR /mycroft/ai
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
+
+WORKDIR /home/mycroft
 EXPOSE 8181
-CMD ["/mycroft/ai/mycroft.sh start -c"]
+CMD ["/bin/bash"]
