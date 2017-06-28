@@ -4,7 +4,7 @@ ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
 #For now copying deb files over to install
-COPY pair.sh /usr/local/bin/
+COPY pair.sh /usr/local/bin
 
 # Install Server Dependencies for Mycroft
 RUN \
