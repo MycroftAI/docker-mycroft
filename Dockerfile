@@ -12,7 +12,8 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
-  apt-transport-https \
+  apt-transport-https \pulseaudio \
+  alsa-utils && \
   software-properties-common && \
   add-apt-repository ppa:mycroft-ai/mycroft-ai && \
   add-apt-repository ppa:mycroft-ai/mimic && \
@@ -21,9 +22,7 @@ RUN \
   apt-get install -yq mycroft-core && \
   apt-get install -f && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  service mycroft-messagebus start && \
-  service mycroft-skills start
+  rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR /home/mycroft
