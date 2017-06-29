@@ -3,8 +3,7 @@ FROM ubuntu:17.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-#For now copying deb files over to install
-COPY pair.sh /usr/local/bin
+
 
 # Install Server Dependencies for Mycroft
 RUN \
@@ -23,8 +22,10 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+#For now copying deb files over to install
+COPY pair.sh /home/mycroft
 
 WORKDIR /home/mycroft
 EXPOSE 8181
-RUN ["chmod", "+x", "/usr/local/bin/pair.sh"]
+RUN ["chmod", "+x", "/home/mycroft/pair.sh"]
 CMD ["/bin/bash"]
