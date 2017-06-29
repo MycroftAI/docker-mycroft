@@ -14,6 +14,8 @@ RUN \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
   software-properties-common && \
+  add-apt-repository ppa:mycroft-ai/mycroft-ai && \
+  add-apt-repository ppa:mycroft-ai/mimic && \
   add-apt-repository ppa:mycroft-devs/pythontz && \
   apt-get update && \
   apt-get install -yq mycroft-core && \
