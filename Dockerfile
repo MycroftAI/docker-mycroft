@@ -12,8 +12,8 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
-  apt-transport-https \pulseaudio \
-  alsa-utils && \
+  apt-transport-https \
+  software-properties-common && \
   add-apt-repository ppa:mycroft-ai/mycroft-ai && \
   add-apt-repository ppa:mycroft-ai/mimic && \
   add-apt-repository ppa:mycroft-devs/pythontz && \
