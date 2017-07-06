@@ -17,7 +17,7 @@ RUN \
   add-apt-repository ppa:mycroft-ai/mimic && \
   add-apt-repository ppa:mycroft-devs/pythontz && \
   apt-get update && \
-  apt-get install -yq mycroft-core && \
+  apt-get install -yq mycroft && \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
