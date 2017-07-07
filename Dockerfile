@@ -20,9 +20,7 @@ RUN \
   #add-apt-repository ppa:mycroft-devs/pythontz && \
   apt-get update && \
   apt-get install -yq mycroft-core && \
-  apt-get install -f && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -f
 
 #For now copying deb files over to install
 COPY pair.sh /home/mycroft
