@@ -19,7 +19,7 @@ RUN \
   cd /mycroft && \
 
   # Checkout Mycroft
-  git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
+  git clone git@github.com:MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
   /bin/bash build_host_setup_docker.sh
 
