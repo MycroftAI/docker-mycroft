@@ -8,11 +8,12 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
-  git && \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
-
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y git && \
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
