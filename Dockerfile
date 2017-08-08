@@ -13,7 +13,9 @@ RUN \
   cd /mycroft && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y git && \
+  apt-get install -y \
+  libssl-dev \
+  git && \
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
