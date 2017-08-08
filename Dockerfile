@@ -7,7 +7,7 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
-  apt-transport-https \
+  apt-transport-https && \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
