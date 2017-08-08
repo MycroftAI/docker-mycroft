@@ -11,12 +11,13 @@ RUN \
   apt-transport-https && \
   mkdir /mycroft && \
   TOP=/mycroft && \
-  cd /mycroft && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y \
   libssl-dev \
   git && \
+  cd /mycroft && \
+
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
