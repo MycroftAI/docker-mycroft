@@ -3,6 +3,15 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
+mkdir /mycroft && \
+TOP=/mycroft && \
+cd /mycroft && \
+
+# Checkout Mycroft
+git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
+cd /mycroft/ai && \
+/bin/bash build_host_setup_docker.sh
+
 #For now copying deb files over to install
 COPY build_host_setup_debian.sh /usr/local/bin/
 COPY mycroft-core-amd64_0.8.20-1.deb /usr/local/bin
@@ -26,14 +35,8 @@ RUN \
   jq \
   pulseaudio \
   alsa-utils && \
-  cd /usr/local/bin && \
-  /bin/bash build_host_setup_debian.sh && \
-  mkdir /mycroft && \
-  TOP=/mycroft && \
-  cd /mycroft && \
 
-  # Checkout Mycroft
-  git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
+  # Move To Mycroft Folder
   cd /mycroft/ai && \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip==7.1.2 && \
