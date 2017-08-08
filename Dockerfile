@@ -3,14 +3,15 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-mkdir /mycroft && \
-TOP=/mycroft && \
-cd /mycroft && \
+RUN \
+  mkdir /mycroft && \
+  TOP=/mycroft && \
+  cd /mycroft && \
 
-# Checkout Mycroft
-git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
-cd /mycroft/ai && \
-/bin/bash build_host_setup_docker.sh
+  # Checkout Mycroft
+  git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
+  cd /mycroft/ai && \
+  /bin/bash build_host_setup_docker.sh
 
 #For now copying deb files over to install
 COPY build_host_setup_debian.sh /usr/local/bin/
