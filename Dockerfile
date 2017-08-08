@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
+# Installing dependencies to pull mycroft-core and get docker setup file.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
@@ -14,7 +15,7 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y \
-  libssl-dev \
+  dnsmasq \
   git && \
   cd /mycroft && \
 
@@ -40,7 +41,6 @@ RUN \
   apt-get install -yq --no-install-recommends \
   mimic \
   supervisor \
-  dnsmasq \
   avrdude \
   jq \
   pulseaudio \
