@@ -4,6 +4,10 @@ ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
 RUN \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -yq --no-install-recommends \
+  git && \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
