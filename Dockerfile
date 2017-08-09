@@ -48,5 +48,5 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-CMD ["/mycroft/ai/mycroft.sh", "start", "-c"]
-CMD ["tail", "-f", "/var/log/mycroft-skills.log"]
+CMD ["/bin/bash", "/mycroft/ai/mycroft.sh start -c"]
+CMD ["/bin/bash", "tail -f /var/log/mycroft-skills.log"]
