@@ -42,7 +42,7 @@ RUN \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  msm/msm install default
+  msm/msm default
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
