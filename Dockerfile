@@ -42,10 +42,10 @@ RUN \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  msm/msm default && \
-  /mycroft/ai/mycroft.sh start -c
+  msm/msm default 
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
+CMD ["/mycroft/ai/mycroft.sh", "start -c"]
