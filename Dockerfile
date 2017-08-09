@@ -41,7 +41,8 @@ RUN \
   dpkg -i /usr/local/bin/mycroft-core-amd64_0.8.20-1.deb && \
   apt-get install -f && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  msm/msm default && \
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
