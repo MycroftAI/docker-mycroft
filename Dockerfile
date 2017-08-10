@@ -48,4 +48,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-ENTRYPOINT ["/bin/bash", "mycroft.sh start -d"]
+ENTRYPOINT ["/mycroft.sh start -d"]
