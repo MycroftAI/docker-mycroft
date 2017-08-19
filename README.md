@@ -1,5 +1,7 @@
 # Mycroft Docker Development Environment
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=btotharye&repoName=docker-mycroft&branch=master&pipelineName=docker-mycroft&accountName=btotharye&type=cf-1)]( https://g.codefresh.io/repositories/btotharye/docker-mycroft/builds?filter=trigger:build;branch:master;service:5952e3f0b2ad780001c3a603~docker-mycroft)
+
 ## How to build and run
 
 1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
@@ -58,4 +60,3 @@ screen tips:
             press ctrl + a, ctrl + d to detace the screen again
             See the screen man page for more details
 ```
-
