@@ -26,6 +26,7 @@ RUN \
   avrdude \
   jq \
   pulseaudio \
+  libfann-dev \
   alsa-utils && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_docker.sh && \
