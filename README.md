@@ -69,5 +69,5 @@ screen tips:
 ```
 
 
-#### Known Issues
+# Known Issues
 There is currently a issue where skills are not being installed correctly on load and is being investigated, for now you will need to `docker run exec -it container_name /bin/bash` to get into the container and run msm/msm default to try and get them to load, you can also just install the skills from the main location at https://github.com/MycroftAI/mycroft-skills
