@@ -6,7 +6,7 @@ ENV ENV DEBIAN_FRONTEND noninteractive
 
 #For now copying deb files over to install
 COPY build_host_setup_docker.sh /usr/local/bin/
-COPY mycroft-core-amd64_0.8.20-1.deb /usr/local/bin
+COPY mycroft-core-amd64_0.8.20-1.deb /usr/local/bin/
 
 # Install Server Dependencies for Mycroft
 RUN \
