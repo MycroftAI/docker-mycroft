@@ -2,6 +2,13 @@
 
 [![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=MycroftAI&repoName=docker-mycroft&branch=master&pipelineName=docker-mycroft&accountName=btotharye&type=cf-1)]( https://g.codefresh.io/repositories/MycroftAI/docker-mycroft/builds?filter=trigger:build;branch:master;service:599b524e9accf20001956e6d~docker-mycroft) [![Build Status](https://travis-ci.org/MycroftAI/docker-mycroft.svg?branch=master)](https://travis-ci.org/MycroftAI/docker-mycroft)
 
+## Running image from dockerhub
+This repo is updated on dockerhub at https://hub.docker.com/r/mycroftai/docker-mycroft/ and you can run it without building by simply running:
+
+Just replace the directory_on_local_machine with where you want the container mapped on your local machine, IE /home/user/mycroft for example if you created a mycroft folder in your home directory.  This is so the pairing file is stored outside the container.
+
+`docker run -itd -p 8181:8181 -v directory_on_local_machine:/root/.mycroft mycroftai/docker-mycroft`
+
 ## How to build and run
 
 1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
@@ -60,3 +67,7 @@ screen tips:
             press ctrl + a, ctrl + d to detace the screen again
             See the screen man page for more details
 ```
+
+
+#### Known Issues
+There is currently a issue where skills are not being installed correctly on load and is being investigated, for now you will need to `docker run exec -it container_name /bin/bash` to get into the container and run msm/msm default to try and get them to load, you can also just install the skills from the main location at https://github.com/MycroftAI/mycroft-skills
