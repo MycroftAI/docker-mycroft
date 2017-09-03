@@ -3,7 +3,7 @@
 [![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=MycroftAI&repoName=docker-mycroft&branch=master&pipelineName=docker-mycroft&accountName=btotharye&type=cf-1)]( https://g.codefresh.io/repositories/MycroftAI/docker-mycroft/builds?filter=trigger:build;branch:master;service:599b524e9accf20001956e6d~docker-mycroft) [![Build Status](https://travis-ci.org/MycroftAI/docker-mycroft.svg?branch=master)](https://travis-ci.org/MycroftAI/docker-mycroft)
 
 ## Running image from dockerhub
-This repo is updated on dockerhub at https://hub.docker.com/r/mycroftai/docker-mycroft/ and you can run it without building by simply running:
+This repo is updated on dockerhub at https://hub.docker.com/r/mycroftai/docker-mycroft/ and you can run it without building by simply running the below code.
 
 Just replace the directory_on_local_machine with where you want the container mapped on your local machine, IE /home/user/mycroft for example if you created a mycroft folder in your home directory.  This is so the pairing file is stored outside the container.
 
