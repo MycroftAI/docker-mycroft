@@ -36,13 +36,13 @@ RUN \
   mkdir /mycroft/ai/mimic && \
   mkdir /mycroft/ai/mimic/bin && \
   mv /usr/local/bin/mimic /mycroft/ai/mimic/bin && \
-  dpkg -i /usr/local/bin/mycroft-core-amd64_0.8.12-1.deb && \
+  /mycroft/ai/./dev_setup.sh && \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-CMD ["/mycroft/ai/mycroft.sh start -c"]
+RUN ["/bin/bash", "/mycroft/ai/mycroft.sh", "start", "-c"]
+ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
