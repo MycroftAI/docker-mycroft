@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#Docker doesn't use sudo so need one without sudo for automation of image.
+
 apt-get install -y \
     git \
     python \
@@ -23,4 +25,7 @@ apt-get install -y \
     curl \
     libicu-dev \
     pkg-config \
-    automake
+    automake \
+    libjpeg-dev \
+    locate \
+    libfann-dev
