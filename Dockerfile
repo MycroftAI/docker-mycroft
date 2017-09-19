@@ -12,6 +12,8 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
+  curl \
+  wget \
   software-properties-common && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian-unstable main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
