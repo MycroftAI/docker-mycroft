@@ -16,7 +16,7 @@ RUN \
   wget \
   software-properties-common && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
-  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian-stable main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
+  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   #add-apt-repository ppa:mycroft-ai/mycroft-ai && \
   #add-apt-repository ppa:mycroft-ai/mimic && \
   #add-apt-repository ppa:mycroft-devs/pythontz && \
