@@ -31,4 +31,5 @@ WORKDIR /home/mycroft
 ENV PYTHONPATH $PYTHONPATH:/home/mycroft
 EXPOSE 8181
 RUN ["chmod", "+x", "/home/mycroft/pair.sh"]
-CMD ["/bin/bash"]
+RUN ["/bin/bash", "/home/mycroft/pair.sh"]
+ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
