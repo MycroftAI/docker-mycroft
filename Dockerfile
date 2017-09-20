@@ -28,7 +28,7 @@ RUN \
 COPY pair.sh /home/mycroft
 
 WORKDIR /home/mycroft
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
+ENV PYTHONPATH $PYTHONPATH:/home/mycroft
 EXPOSE 8181
 RUN ["chmod", "+x", "/home/mycroft/pair.sh"]
 CMD ["/bin/bash"]
