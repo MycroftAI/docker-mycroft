@@ -12,6 +12,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
+  python-pip \
   curl \
   wget \
   software-properties-common && \
