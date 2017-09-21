@@ -30,7 +30,7 @@ Just replace the directory_on_local_machine with where you want the container ma
    Then you can run from inside the container:
    ```cli.sh``` to start up the cli, and type pair my device to pair it.
 
-5. Confirm via docker ps that your container is up and serving port 8181:
+5. Confirm via docker ps that your container is up and serving port 8181, mycroft will already be running since its configured in the image to auto start:
 
 
 ```
@@ -39,12 +39,15 @@ CONTAINER ID        IMAGE                                                COMMAND
 692219e23bf2        user/mycroft                                    "/mycroft/ai/mycro..."   3 seconds ago       Up 1 second         8181/tcp                                         amazing_borg
 ```
 
+
 ### CLI Access
 You can interact with the CLI of the container by running the following command, this will connect you to the running container via bash:
 
 ```
 docker exec -it container_name /bin/bash
 ```
+
+Once in the container you can do ```./cli.sh``` to get a interactive CLI to interact with mycroft if needed.  Mycroft is started by default upon running container.
 
 You can exit this container safely and leave it running by hitting cntrl + p + q, otherwise you can just hit cntrl+c to exit the cli and it will exit the container.  If you exit with cntrl + p + q it will leave the session open and running, still seeing issues attaching to sessions with previously running cli sessions though, so be advised.
 
