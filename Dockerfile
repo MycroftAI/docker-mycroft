@@ -4,7 +4,6 @@ ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
 
-
 # Install Server Dependencies for Mycroft
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -29,3 +28,5 @@ COPY pair.sh /home/mycroft
 WORKDIR /home/mycroft
 EXPOSE 8181
 RUN ["chmod", "+x", "/home/mycroft/pair.sh"]
+RUN ["/bin/bash", "/home/mycroft/pair.sh"]
+ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
