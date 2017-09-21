@@ -10,9 +10,9 @@ Just replace the directory_on_local_machine with where you want the container ma
 `docker run -itd -p 8181:8181 -v directory_on_local_machine:/root/.mycroft mycroftai/docker-mycroft`
 
 ## Versions and Builds - Tags
-Latest - Latest stable release currently [8.21](https://github.com/MycroftAI/mycroft-core/releases/tag/release%2Fv0.8.21)
+**Latest** - Latest stable release currently [8.21](https://github.com/MycroftAI/mycroft-core/releases/tag/release%2Fv0.8.21)
 
-Unstable - Latest unstable release currently [8.22](https://github.com/MycroftAI/mycroft-core/releases/tag/release%2Fv0.8.22)
+**Unstable** - Latest unstable release currently [8.22](https://github.com/MycroftAI/mycroft-core/releases/tag/release%2Fv0.8.22)
 
 ## How to build and run
 
