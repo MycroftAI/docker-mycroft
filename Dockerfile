@@ -23,10 +23,12 @@ RUN \
   apt-get upgrade mycroft-core
 
 #For now copying deb files over to install
-COPY pair.sh /home/mycroft
+COPY start.sh /home/mycroft
+COPY cli.sh /home/mycroft
 
 WORKDIR /home/mycroft
 EXPOSE 8181
-RUN ["chmod", "+x", "/home/mycroft/pair.sh"]
-RUN ["/bin/bash", "/home/mycroft/pair.sh"]
+RUN ["chmod", "+x", "/home/mycroft/start.sh"]
+RUN ["chmod", "+x", "/home/mycroft/cli.sh"]
+RUN ["/bin/bash", "/home/mycroft/start.sh"]
 ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
