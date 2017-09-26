@@ -54,4 +54,4 @@ RUN \
 
 ENV PYTHONPATH $PYTHONPATH:/home/mycroftai
 EXPOSE 8181
-ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
+ENTRYPOINT ["tail", "-f", "/home/mycroftai/mycroft-core/scripts/logs/mycroft-skills.log"]
