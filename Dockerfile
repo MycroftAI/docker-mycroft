@@ -54,4 +54,8 @@ RUN \
 
 ENV PYTHONPATH $PYTHONPATH:/home/mycroftai
 EXPOSE 8181
+RUN \
+  /bin/bash /home/mycroftai/mycroft-core/mycroft.sh start -c && \
+  ls -lah /opt/mycroft
+RUN ["/home/mycroftai/mycroft-core/msm/msm", "default"]
 ENTRYPOINT ["tail", "-f", "/home/mycroftai/mycroft-core/scripts/logs/mycroft-skills.log"]
