@@ -57,11 +57,3 @@ You can get the container name via:
 ```
 docker ps
 ```
-You can exit this container safely and leave it running by hitting cntrl + p + q, otherwise you can just hit cntrl+c to exit the cli and it will exit the container.  If you exit with cntrl + p + q it will leave the session open and running, still seeing issues attaching to sessions with previously running cli sessions though, so be advised.
-
-
-You can get the container name via:
-
-```
-docker ps
-```
