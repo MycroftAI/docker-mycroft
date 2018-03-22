@@ -30,7 +30,7 @@ RUN \
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
   cd /mycroft/ai && \
   # git fetch && git checkout dev && \ this branch is now merged to master
-  easy_install pip==7.1.2 && \
+  easy_install pip && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
   /mycroft/ai/./dev_setup.sh && \
   apt-get install -f && \
@@ -40,5 +40,5 @@ RUN \
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["/bin/bash", "/mycroft/ai/mycroft.sh", "start", "-c"]
+RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "start", "all"]
 ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
