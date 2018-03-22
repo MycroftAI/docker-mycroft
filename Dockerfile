@@ -5,8 +5,7 @@ ENV ENV DEBIAN_FRONTEND noninteractive
 
 #For now copying deb files over to install
 COPY build_host_setup_debian.sh /usr/local/bin/
-COPY mycroft-core-amd64_0.8.12-1.deb /usr/local/bin
-COPY mimic-amd64_1.2.0.2-1.deb /usr/local/bin
+
 
 # Install Server Dependencies for Mycroft
 RUN \
