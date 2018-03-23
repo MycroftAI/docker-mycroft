@@ -8,7 +8,6 @@ ENV ENV DEBIAN_FRONTEND noninteractive
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
-  apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
   curl \
