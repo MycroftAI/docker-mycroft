@@ -10,7 +10,7 @@ COPY build_host_setup_debian.sh /usr/local/bin/
 # Install Server Dependencies for Mycroft
 RUN \
   sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-  locale-gen
+  locale-gen && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
