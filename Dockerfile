@@ -24,6 +24,8 @@ RUN \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
+  mkdir /opt/mycroft && \
+  mkdir /opt/mycroft/skills && \
 
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
@@ -36,8 +38,15 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+# Set the locale
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
 RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "all"]
-#ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
+ENTRYPOINT ["tail", "-f", "/mycroft/ai/scripts/logs/mycroft-skills.log"]
