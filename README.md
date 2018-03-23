@@ -48,7 +48,7 @@ You can interact with the CLI of the container by running the following command,
 docker exec -it mycroft /bin/bash
 ```
 
-Once in the container you can do ```./cli.sh``` to get a interactive CLI to interact with mycroft if needed.  Mycroft is started by default upon running container.
+Once in the container you can do ```./start-mycroft.sh cli``` to get a interactive CLI to interact with mycroft if needed.  Mycroft is started by default upon running container.
 
 You can exit this container safely and leave it running by hitting cntrl + p + q, otherwise you can just hit cntrl+c to exit the cli and it will exit the container.  If you exit with cntrl + p + q it will leave the session open and running, still seeing issues attaching to sessions with previously running cli sessions though, so be advised.
 
