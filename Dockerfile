@@ -72,10 +72,11 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   pwd && \
-  touch scripts/logs/mycroft-bus.log && \
-  touch scripts/logs/mycroft-voice.log && \
-  touch scripts/logs/mycroft-skills.log && \
-  touch scripts/logs/mycroft-audio.log
+  ls -lah /mycroft/ai/scripts/logs && \
+  touch /mycroft/ai/scripts/logs/mycroft-bus.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-audio.log
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
