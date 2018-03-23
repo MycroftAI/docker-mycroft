@@ -53,30 +53,27 @@ RUN \
   alsa-utils \
   mimic && \
   cd /usr/local/bin && \
-  mkdir /mycroft && \
-  TOP=/mycroft && \
-  cd /mycroft && \
   mkdir /opt/mycroft && \
   mkdir /opt/mycroft/skills && \
 
 
 
   # Checkout Mycroft
-  git clone https://github.com/MycroftAI/mycroft-core.git /mycroft/ai/ && \
-  cd /mycroft/ai && \
+  git clone https://github.com/MycroftAI/mycroft-core.git /opt/mcyroft && \
+  cd /opt/mycroft && \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
-  /mycroft/ai/./dev_setup.sh --allow-root -sm && \
+  /opt/mycroft/./dev_setup.sh --allow-root -sm && \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  mkdir /mycroft/ai/scripts/logs && \
-  touch /mycroft/ai/scripts/logs/mycroft-bus.log && \
-  touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
-  touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
-  touch /mycroft/ai/scripts/logs/mycroft-audio.log && \
-  msm default
+  mkdir /opt/mycroft/scripts/logs && \
+  touch /opt/mycroft/scripts/logs/mycroft-bus.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-voice.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-skills.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-audio.log && \
+  /opt/mycroft/msm/msm default
 
 
 # Set the locale
@@ -85,11 +82,11 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-WORKDIR /mycroft/ai
-ADD startup.sh /mycroft/ai
+WORKDIR /opt/mycroft
+ADD startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["chmod", "+x", "/mycroft/ai/start-mycroft.sh"]
-RUN ["chmod", "+x", "/mycroft/ai/startup.sh"]
-RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "all"]
-ENTRYPOINT ["/bin/bash", "/mycroft/ai/startup.sh"]
+RUN ["chmod", "+x", "/opt/mycroft/start-mycroft.sh"]
+RUN ["chmod", "+x", "/opt/mycroft/startup.sh"]
+RUN ["/bin/bash", "/opt/mycroft/start-mycroft.sh", "all"]
+ENTRYPOINT ["/bin/bash", "/opt/mycroft/startup.sh"]
