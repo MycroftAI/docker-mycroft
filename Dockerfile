@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.10
 
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
