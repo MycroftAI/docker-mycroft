@@ -73,6 +73,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   pwd && \
   ls -lah /mycroft/ai/scripts && \
+  mkdir /mycroft/ai/scripts/logs && \
   touch /mycroft/ai/scripts/logs/mycroft-bus.log && \
   touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
   touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
