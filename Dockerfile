@@ -70,7 +70,11 @@ RUN \
   /mycroft/ai/./dev_setup.sh --allow-root -sm && \
   apt-get install -f && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  touch /mycroft/ai/scripts/logs/mycroft-bus.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
+  touch /mycroft/ai/scripts/logs/mycroft-audio.log
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
