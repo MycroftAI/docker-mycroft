@@ -7,7 +7,7 @@ This repo is updated on dockerhub at https://hub.docker.com/r/mycroftai/docker-m
 
 Just replace the directory_on_local_machine with where you want the container mapped on your local machine, IE /home/user/mycroft for example if you created a mycroft folder in your home directory.  This is so the pairing file is stored outside the container.  
 
-`docker run -itd -p 8181:8181 -v directory_on_local_machine:/root/.mycroft mycroftai/docker-mycroft`
+`docker run --name=mycroft -itd -p 8181:8181 -v directory_on_local_machine:/root/.mycroft mycroftai/docker-mycroft`
 
 ## How to build and run
 
