@@ -24,6 +24,32 @@ RUN \
   apt-get install -yq --no-install-recommends \
   supervisor \
   libicu-dev \
+  git \
+  python \
+  python-dev \
+  python-setuptools \
+  python-virtualenv \
+  python-gobject-dev \
+  virtualenvwrapper \
+  libtool \
+  libffi-dev \
+  libssl-dev \
+  autoconf \
+  automake \
+  bison \
+  swig \
+  libglib2.0-dev \
+  s3cmd \
+  portaudio19-dev \
+  mpg123 \
+  screen \
+  flac \
+  pkg-config \
+  automake \
+  libjpeg-dev \
+  libfann-dev \
+  build-essential \
+  jq \
   dnsmasq \
   avrdude \
   jq \
