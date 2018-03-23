@@ -76,7 +76,6 @@ RUN \
   touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
   touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
   touch /mycroft/ai/scripts/logs/mycroft-audio.log && \
-  /mycroft/ai/scripts/prepare_msm.sh && \
   msm default
 
 
