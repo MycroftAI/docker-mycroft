@@ -54,7 +54,6 @@ RUN \
   alsa-utils \
   mimic && \
   cd /usr/local/bin && \
-  /bin/bash build_host_setup_debian.sh && \
   mkdir /mycroft && \
   TOP=/mycroft && \
   cd /mycroft && \
