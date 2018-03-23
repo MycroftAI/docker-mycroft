@@ -76,10 +76,10 @@ RUN \
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8  
+ENV LC_ALL en_US.UTF-8
 
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "all"]
-ENTRYPOINT ["tail", "-f", "/mycroft/ai/scripts/logs/mycroft-skills.log"]
+RUN ["/bin/bash", "start-mycroft.sh", "all"]
+ENTRYPOINT ["tail", "-f", "scripts/logs/mycroft-skills.log"]
