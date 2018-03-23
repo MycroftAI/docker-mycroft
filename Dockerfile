@@ -17,13 +17,13 @@ RUN \
   curl \
   wget \
   locales \
-  libicu57 \
   software-properties-common && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   apt-get update && \
   apt-get install -yq --no-install-recommends \
   supervisor \
+  libicu57 \
   dnsmasq \
   avrdude \
   jq \
