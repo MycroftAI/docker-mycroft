@@ -67,7 +67,7 @@ RUN \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
-  /mycroft/ai/./dev_setup.sh --allow-root && \
+  /mycroft/ai/./dev_setup.sh --allow-root -sm && \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
