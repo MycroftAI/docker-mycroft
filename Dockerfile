@@ -9,12 +9,12 @@ COPY build_host_setup_debian.sh /usr/local/bin/
 
 # Install Server Dependencies for Mycroft
 RUN \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -yq --no-install-recommends \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get install -yq --no-install-recommends \
   supervisor \
   mimic \
   curl \
