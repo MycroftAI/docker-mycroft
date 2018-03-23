@@ -87,5 +87,6 @@ WORKDIR /mycroft/ai
 ADD startup.sh /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["chmod", "+x", "/mycroft/ai/startup.sh"]
+RUN ["chmod", "+x", "/mycroft/ai/start-mycroft.sh"]
+RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh"]
 ENTRYPOINT ["tail", "-f", "scripts/logs/mycroft-skills.log"]
