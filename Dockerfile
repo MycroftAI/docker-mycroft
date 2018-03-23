@@ -75,7 +75,10 @@ RUN \
   touch /mycroft/ai/scripts/logs/mycroft-bus.log && \
   touch /mycroft/ai/scripts/logs/mycroft-voice.log && \
   touch /mycroft/ai/scripts/logs/mycroft-skills.log && \
-  touch /mycroft/ai/scripts/logs/mycroft-audio.log
+  touch /mycroft/ai/scripts/logs/mycroft-audio.log && \
+  /mycroft/ai/scripts/prepare_msm.sh && \
+  msm default
+
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
