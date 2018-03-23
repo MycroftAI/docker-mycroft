@@ -53,8 +53,6 @@ RUN \
   alsa-utils \
   mimic && \
   cd /usr/local/bin && \
-  mkdir /opt/mycroft && \
-  mkdir /opt/mycroft/skills && \
 
 
 
