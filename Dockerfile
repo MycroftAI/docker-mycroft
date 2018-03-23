@@ -40,4 +40,4 @@ WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
 RUN ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "all"]
-ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
+#ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
