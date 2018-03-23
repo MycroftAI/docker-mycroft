@@ -86,5 +86,5 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-CMD ["/bin/bash", "start-mycroft.sh", "all"]
+RUN ["/bin/bash", "start-mycroft.sh", "all"]
 ENTRYPOINT ["tail", "-f", "scripts/logs/mycroft-skills.log"]
