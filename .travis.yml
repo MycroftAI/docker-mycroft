@@ -7,7 +7,7 @@ services:
 
 before_install:
   - docker build -t mycroft-docker .
-  - docker run -itd -p 127.0.0.1:8181:8181 --name mycroft-docker mycroft-docker /bin/bash /mycroft/ai/mycroft.sh start -d
+  - docker run -itd -p 127.0.0.1:8181:8181 --name mycroft-docker mycroft-docker"
 
 
 script:

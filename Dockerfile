@@ -1,61 +1,91 @@
-FROM ubuntu:16.04
-
+FROM ubuntu:17.10
 
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-RUN \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -yq --no-install-recommends \
-  apt-transport-https \
-  python-pip \
-  git \
-  python-setuptools \
-  curl \
-  wget \
-  sudo  \
-  software-properties-common
-
-RUN \
-useradd -m mycroftai && echo "mycroftai:mycroftai" | chpasswd && adduser mycroftai sudo && \
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-
-COPY host_setup.sh /usr/local/bin/
-
-USER mycroftai
 
 # Install Server Dependencies for Mycroft
 RUN \
-  sudo sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  sudo apt-get update && \
-  sudo apt-get -y upgrade && \
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
-  sudo bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
-  sudo apt-get update && \
-  sudo apt-get install -f && \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get install -yq --no-install-recommends \
+  apt-transport-https \
+  curl \
+  wget \
+  locales \
+  software-properties-common && \
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
+  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
+  apt-get update && \
+  apt-get install -yq --no-install-recommends \
+  supervisor \
+  libicu-dev \
+  git \
+  python \
+  python-dev \
+  python-setuptools \
+  python-virtualenv \
+  python-gobject-dev \
+  virtualenvwrapper \
+  libtool \
+  libffi-dev \
+  libssl-dev \
+  autoconf \
+  automake \
+  bison \
+  swig \
+  libglib2.0-dev \
+  s3cmd \
+  portaudio19-dev \
+  mpg123 \
+  screen \
+  flac \
+  pkg-config \
+  automake \
+  libjpeg-dev \
+  libfann-dev \
+  build-essential \
+  jq \
+  dnsmasq \
+  avrdude \
+  jq \
+  pulseaudio \
+  alsa-utils \
+  mimic && \
   cd /usr/local/bin && \
-  sudo /bin/bash host_setup.sh && \
+  mkdir /opt/mycroft && \
+
 
   # Checkout Mycroft
-  git clone https://github.com/MycroftAI/mycroft-core.git /home/mycroftai/mycroft-core && \
-  cd /home/mycroftai/mycroft-core && \
-  sudo easy_install pip==7.1.2 && \
-  sudo pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
-  echo $(id -u) && \
-  whoami && \
-  pwd && \
-  ls -lah && \
-  /bin/bash dev_setup.sh && \
-  sudo apt-get install -f && \
-  sudo apt-get clean && \
-  sudo rm -rf /var/lib/apt/lists/*
+  git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft && \
+  cd /opt/mycroft && \
+  mkdir /opt/mycroft/skills && \
+  # git fetch && git checkout dev && \ this branch is now merged to master
+  easy_install pip && \
+  pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
+  /opt/mycroft/./dev_setup.sh --allow-root -sm && \
+  apt-get install -f && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir /opt/mycroft/scripts/logs && \
+  touch /opt/mycroft/scripts/logs/mycroft-bus.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-voice.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-skills.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-audio.log && \
+  /opt/mycroft/msm/msm default
 
-ENV PYTHONPATH $PYTHONPATH:/home/mycroftai
+
+# Set the locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+WORKDIR /opt/mycroft
+ADD startup.sh /opt/mycroft
+ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN \
-  /bin/bash /home/mycroftai/mycroft-core/mycroft.sh start -c && \
-  ls -lah /opt/mycroft
-RUN ["/home/mycroftai/mycroft-core/msm/msm", "default"]
-ENTRYPOINT ["tail", "-f", "/home/mycroftai/mycroft-core/scripts/logs/mycroft-skills.log"]
+RUN ["chmod", "+x", "/opt/mycroft/start-mycroft.sh"]
+RUN ["chmod", "+x", "/opt/mycroft/startup.sh"]
+RUN ["/bin/bash", "/opt/mycroft/start-mycroft.sh", "all"]
+ENTRYPOINT ["/bin/bash", "/opt/mycroft/startup.sh"]
