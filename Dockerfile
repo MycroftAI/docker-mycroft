@@ -53,12 +53,13 @@ RUN \
   alsa-utils \
   mimic && \
   cd /usr/local/bin && \
-
+  mkdir /opt/mycroft && \
 
 
   # Checkout Mycroft
   git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft && \
   cd /opt/mycroft && \
+  mkdir /opt/mycroft/skills && \
   # git fetch && git checkout dev && \ this branch is now merged to master
   easy_install pip && \
   pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
