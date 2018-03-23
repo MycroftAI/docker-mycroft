@@ -3,9 +3,6 @@ FROM ubuntu:16.04
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
 
-#For now copying deb files over to install
-COPY build_host_setup_debian.sh /usr/local/bin/
-
 
 # Install Server Dependencies for Mycroft
 RUN \
