@@ -23,7 +23,6 @@ RUN \
   apt-get update && \
   apt-get install -yq --no-install-recommends \
   supervisor \
-  libicu57 \
   dnsmasq \
   avrdude \
   jq \
