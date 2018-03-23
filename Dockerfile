@@ -73,7 +73,10 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 # Set the locale
+RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8  
 
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
