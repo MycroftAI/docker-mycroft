@@ -9,9 +9,6 @@ COPY build_host_setup_debian.sh /usr/local/bin/
 
 # Install Server Dependencies for Mycroft
 RUN \
-  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
-  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
@@ -20,6 +17,7 @@ RUN \
   curl \
   wget \
   locales \
+  apt-transport-https \
   software-properties-common \
   dnsmasq \
   avrdude \
@@ -33,9 +31,9 @@ RUN \
   cd /mycroft && \
   mkdir /opt/mycroft && \
   mkdir /opt/mycroft/skills && \
-  sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-  dpkg-reconfigure --frontend=noninteractive locales && \
-  update-locale LANG=en_US.UTF-8 && \
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
+  bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
 
 
   # Checkout Mycroft
