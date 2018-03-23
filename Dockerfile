@@ -9,8 +9,6 @@ COPY build_host_setup_debian.sh /usr/local/bin/
 
 # Install Server Dependencies for Mycroft
 RUN \
-  sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-  locale-gen && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -21,6 +19,7 @@ RUN \
   mimic \
   curl \
   wget \
+  locales \
   software-properties-common \
   dnsmasq \
   avrdude \
@@ -34,6 +33,9 @@ RUN \
   cd /mycroft && \
   mkdir /opt/mycroft && \
   mkdir /opt/mycroft/skills && \
+  sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+  dpkg-reconfigure --frontend=noninteractive locales && \
+  update-locale LANG=en_US.UTF-8 && \
 
 
   # Checkout Mycroft
@@ -49,8 +51,6 @@ RUN \
 
 # Set the locale
 ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
