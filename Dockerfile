@@ -84,7 +84,8 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 WORKDIR /mycroft/ai
+ADD startup.sh /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-CMD ["/bin/bash", "/mycroft/ai/start-mycroft.sh", "all"]
+CMD [/mycroft/ai./startup.sh]
 ENTRYPOINT ["tail", "-f", "scripts/logs/mycroft-skills.log"]
