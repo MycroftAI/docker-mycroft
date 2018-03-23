@@ -81,8 +81,8 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /mycroft/ai
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["python", "/mycroft/ai/mycroft/messagebus/service/main.py > /mycroft/ai/scripts/logs/mycroft-skills.log &"]
-RUN ["python", "/mycroft/ai/mycroft/client/speech/main.py > /mycroft/ai/scripts/logs/mycroft-skills.log &"]
-RUN ["python", "/mycroft/ai/mycroft/skills/main.py > /mycroft/ai/scripts/logs/mycroft-skills.log &"]
-RUN ["python", "/mycroft/ai/mycroft/audio/main.py > /mycroft/ai/scripts/logs/mycroft-skills.log &"]
+RUN ["python", "/mycroft/ai/mycroft/messagebus/service/main.py > /mycroft/ai/scripts/logs/mycroft-bus.log", "&"]
+RUN ["python", "/mycroft/ai/mycroft/client/speech/main.py > /mycroft/ai/scripts/logs/mycroft-voice.log", "&"]
+RUN ["python", "/mycroft/ai/mycroft/skills/main.py > /mycroft/ai/scripts/logs/mycroft-skills.log", "&"]
+RUN ["python", "/mycroft/ai/mycroft/audio/main.py > /mycroft/ai/scripts/logs/mycroft-audio.log", "&"]
 ENTRYPOINT ["tail", "-f", "scripts/logs/mycroft-skills.log"]
