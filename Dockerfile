@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.10
 
 ENV TERM linux
 ENV ENV DEBIAN_FRONTEND noninteractive
@@ -8,27 +8,84 @@ ENV ENV DEBIAN_FRONTEND noninteractive
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
-  apt-get -y upgrade && \
   apt-get install -yq --no-install-recommends \
   apt-transport-https \
-  python-pip \
   curl \
   wget \
+  locales \
   software-properties-common && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   apt-get update && \
-  apt-get install -yq mycroft-core && \
+  apt-get install -yq --no-install-recommends \
+  supervisor \
+  libicu-dev \
+  git \
+  python \
+  python-dev \
+  python-setuptools \
+  python-virtualenv \
+  python-gobject-dev \
+  virtualenvwrapper \
+  libtool \
+  libffi-dev \
+  libssl-dev \
+  autoconf \
+  automake \
+  bison \
+  swig \
+  libglib2.0-dev \
+  s3cmd \
+  portaudio19-dev \
+  mpg123 \
+  screen \
+  flac \
+  pkg-config \
+  automake \
+  libjpeg-dev \
+  libfann-dev \
+  build-essential \
+  jq \
+  dnsmasq \
+  avrdude \
+  jq \
+  pulseaudio \
+  alsa-utils \
+  mimic && \
+  cd /usr/local/bin && \
+  mkdir /opt/mycroft && \
+
+
+  # Checkout Mycroft
+  git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft && \
+  cd /opt/mycroft && \
+  mkdir /opt/mycroft/skills && \
+  # git fetch && git checkout dev && \ this branch is now merged to master
+  easy_install pip && \
+  pip install -r requirements.txt --trusted-host pypi.mycroft.team && \
+  /opt/mycroft/./dev_setup.sh --allow-root -sm && \
   apt-get install -f && \
-  apt-get upgrade mycroft-core
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir /opt/mycroft/scripts/logs && \
+  touch /opt/mycroft/scripts/logs/mycroft-bus.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-voice.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-skills.log && \
+  touch /opt/mycroft/scripts/logs/mycroft-audio.log && \
+  /opt/mycroft/msm/msm default
 
-#For now copying deb files over to install
-COPY start.sh /home/mycroft
-COPY cli.sh /home/mycroft
 
-WORKDIR /home/mycroft
+# Set the locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+WORKDIR /opt/mycroft
+ADD startup.sh /opt/mycroft
+ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 EXPOSE 8181
-RUN ["chmod", "+x", "/home/mycroft/start.sh"]
-RUN ["chmod", "+x", "/home/mycroft/cli.sh"]
-RUN ["/bin/bash", "/home/mycroft/start.sh"]
-ENTRYPOINT ["tail", "-f", "/var/log/mycroft-skills.log"]
+RUN ["chmod", "+x", "/opt/mycroft/start-mycroft.sh"]
+RUN ["chmod", "+x", "/opt/mycroft/startup.sh"]
+RUN ["/bin/bash", "/opt/mycroft/start-mycroft.sh", "all"]
+ENTRYPOINT ["/bin/bash", "/opt/mycroft/startup.sh"]

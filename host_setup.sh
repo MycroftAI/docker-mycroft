@@ -28,4 +28,4 @@ apt-get install -y \
     automake \
     libjpeg-dev \
     locate \
-    libfann-dev
+    libfann-dev 
