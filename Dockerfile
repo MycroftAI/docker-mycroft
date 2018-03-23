@@ -71,6 +71,7 @@ RUN \
   apt-get install -f && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
+  pwd && \
   touch scripts/logs/mycroft-bus.log && \
   touch scripts/logs/mycroft-voice.log && \
   touch scripts/logs/mycroft-skills.log && \
