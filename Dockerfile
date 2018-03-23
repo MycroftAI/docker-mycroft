@@ -12,22 +12,23 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -yq --no-install-recommends apt-transport-https && \
+  apt-get install -yq --no-install-recommends \
+  apt-transport-https \
+  curl \
+  wget \
+  locales \
+  software-properties-common && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F3B1AA8B && \
   bash -c 'echo "deb http://repo.mycroft.ai/repos/apt/debian debian main" > /etc/apt/sources.list.d/repo.mycroft.ai.list' && \
   apt-get update && \
   apt-get install -yq --no-install-recommends \
   supervisor \
-  mimic \
-  curl \
-  wget \
-  locales \
-  software-properties-common \
   dnsmasq \
   avrdude \
   jq \
   pulseaudio \
-  alsa-utils && \
+  alsa-utils \
+  mimic && \
   cd /usr/local/bin && \
   /bin/bash build_host_setup_debian.sh && \
   mkdir /mycroft && \
