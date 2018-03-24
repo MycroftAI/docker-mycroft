@@ -58,3 +58,17 @@ You can get the container name via:
 ```
 docker ps
 ```
+
+# Installing Skills
+You can install skills into the container from outside by running the following:
+
+`docker exec -it mycroft /opt/mycroft/msm/msm install github_url`
+
+So to install say my basic-skill helper:
+
+`docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/btotharye/mycroft-skill-basichelp`
+
+# Removing Skills
+You can uninstall a skill by removing the folder location for it
+
+`docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-skill-basichelp` - This would remove the above test basic help skill.  You can do a docker logs --follow mycroft to watch the logs and confirm it installs/deletes skills.
