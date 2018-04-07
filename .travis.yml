@@ -7,8 +7,7 @@ services:
 
 before_install:
   - docker build -t mycroft-docker .
-  - docker run -itd -p 127.0.0.1:8181:8181 --name mycroft-docker mycroft-docker"
-
+  - docker run -d -p 127.0.0.1:8181:8181 --name mycroft-docker mycroft-docker
 
 script:
-  - docker ps | grep -q mycroft-docker
+  - docker ps | grep -q "mycroft-docker"
