@@ -2,73 +2,102 @@
 
 [![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=btotharye&repoName=docker-mycroft&branch=master&pipelineName=docker-mycroft&accountName=btotharye&type=cf-1)]( https://g.codefresh.io/repositories/btotharye/docker-mycroft/builds?filter=trigger:build;branch:master;service:5952e3f0b2ad780001c3a603~docker-mycroft) [![Build Status](https://travis-ci.org/MycroftAI/docker-mycroft.svg?branch=master)](https://travis-ci.org/MycroftAI/docker-mycroft)
 
-## Running image from dockerhub
-This repo is updated on dockerhub at https://hub.docker.com/r/mycroftai/docker-mycroft/ and you can run it without building by simply running the below code.
+## Install
+### Get image from Docker hub
+This repo is updated on [dockerhub](https://hub.docker.com/r/mycroftai/docker-mycroft/) and you can have it without building it, by simply running the below command.
 
-Just replace the directory_on_local_machine with where you want the container mapped on your local machine, IE /home/user/mycroft for example if you created a mycroft folder in your home directory.  This is so the pairing file is stored outside the container.  
-
-`docker run --name=mycroft -itd -p 8181:8181 -v directory_on_local_machine:/root/.mycroft mycroftai/docker-mycroft`
-
-## How to build and run
-
-1. Git pull this repository - ```git clone https://github.com/MycroftAI/docker-mycroft.git```
-
-2. Build the docker image with
-   ```docker build -t mycroft .``` in the directory that you have checked out.
-
-3. Run the following to start up mycroft:
-   ```docker run --name mycroft --device /dev/snd:/dev/snd -itd -p 8181:8181 mycroft```
-
-4. Want a interactive cli session to register the device and test things, then run the following and type pair my device to start, we are mounting a local filesystem into the container so we can store our Identity file to reuse this same device over and over on new containers:
-   ```docker run --name mycroft -it -p 8181:8181 -v /path_on_local_device:/root/.mycroft mycroft /bin/bash```
-
-Then you can run from inside the container:
-```cli.sh``` to start up the cli, and type pair my device to pair it.
-
-5. Confirm via docker ps that your container is up and serving port 8181:
-
-
+```bash
+docker pull microftai/docker-mycroft
 ```
+
+### Build image
+Git pull this repository.
+
+```bash
+git clone https://github.com/MycroftAI/docker-mycroft.git
+```
+
+Build the docker image in the directory that you have checked out.
+
+```bash
+docker build -t mycroft .
+```
+
+## Run
+To get persistent data and don't have, for example, to pair our instance every time the container is started. You can map a local directory into the container. Just replace the directory_on_local_machine with where you want the container mapped on your local machine (eg: /home/user/mycroft).
+
+Sounds can be played in the container using pulseaudio, without modifying any config files (Thanks to [fsmunoz](https://github.com/jessfraz/dockerfiles/issues/85#issuecomment-299431931)).
+
+* Set [PULSE_SERVER](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Network/#directconnection) env variable
+* Share pulseaudio's [cookie](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Network/#authorization)
+
+Run the following to start up mycroft:
+
+```bash
+docker run -d \
+-v directory_on_local_machine:/root/.mycroft \
+--device /dev/snd \
+-e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+-v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+-v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+-p 8181:8181 \
+--name mycroft mycroftai/docker-mycroft
+```
+
+Confirm via docker ps that your container is up and serving port 8181:
+
+```bash
 docker ps
 CONTAINER ID        IMAGE                                                COMMAND                  CREATED             STATUS              PORTS                                            NAMES
 692219e23bf2        mycroft                                    "/mycroft/ai/mycro..."         3 seconds ago         Up 1 second           0.0.0.0:8181->8181/tcp                          mycroft
 ```
-6. You should now have a running instance of mycroft that you can interact with via the cli, etc.
 
-## Pairing Instance
-After the container has been started you can do ```docker logs --follow mycroft``` and look for the line that says Pairing Code and use this to pair at https://home.mycroft.ai
+You should now have a running instance of mycroft that you can interact with via the cli, etc.
 
-You can exit out of this docker log command by hitting cntrl + c, the --follow basically turns it into a real tail instead of a cat of the log.
+## Logs
+At any time you can watch the logs simply by running the bellow command:
 
+```bash
+docker logs -f mycroft
+```
 
-### CLI Access
+You can exit out of this docker log command by hitting ctrl + c, the `--follow` basically turns it into a real tail instead of a cat of the log.
+
+## CLI Access
 You can interact with the CLI of the container by running the following command, this will connect you to the running container via bash:
 
-```
+```bash
 docker exec -it mycroft /bin/bash
 ```
 
-Once in the container you can do ```./start-mycroft.sh cli``` to get a interactive CLI to interact with mycroft if needed.  Mycroft is started by default upon running container.
+Once in the container you can do `./start-mycroft.sh cli` to get a interactive CLI to interact with mycroft if needed.
 
-You can exit this container safely and leave it running by hitting cntrl + p + q, otherwise you can just hit cntrl+c to exit the cli and it will exit the container.  If you exit with cntrl + p + q it will leave the session open and running, still seeing issues attaching to sessions with previously running cli sessions though, so be advised.
+You can hit ctrl + c to exit the cli.
 
+## Pairing Instance
+After the container has been started you can watch the logs and look for the line that says Pairing Code and use this to pair at https://home.mycroft.ai.
 
-You can get the container name via:
+## Skills
+You can watch the logs and confirm it installs/deletes skills.
 
-```
-docker ps
-```
-
-# Installing Skills
+### Install
 You can install skills into the container from outside by running the following:
 
-`docker exec -it mycroft /opt/mycroft/msm/msm install github_url`
+```bash
+docker exec -it mycroft /opt/mycroft/msm/msm install github_url
+```
 
 So to install say my basic-skill helper:
 
-`docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/btotharye/mycroft-skill-basichelp`
+```bash
+docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/btotharye/mycroft-skill-basichelp
+```
 
-# Removing Skills
+### Remove
 You can uninstall a skill by removing the folder location for it
 
-`docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-skill-basichelp` - This would remove the above test basic help skill.  You can do a docker logs --follow mycroft to watch the logs and confirm it installs/deletes skills.
+```bash
+docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-skill-basichelp
+```
+
+This would remove the above test basic help skill.
