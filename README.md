@@ -7,7 +7,7 @@
 This repo is updated on [dockerhub](https://hub.docker.com/r/mycroftai/docker-mycroft/) and you can have it without building it, by simply running the below command.
 
 ```bash
-docker pull microftai/docker-mycroft
+docker pull mycroftai/docker-mycroft
 ```
 
 ### Build image
