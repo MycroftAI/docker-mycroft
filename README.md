@@ -84,7 +84,7 @@ You can watch the logs and confirm it installs/deletes skills.
 You can install skills into the container from outside by running the following:
 
 ```bash
-docker exec -it mycroft /opt/mycroft/msm/msm install github_url
+docker exec -it mycroft /usr/local/bin/msm install github_url
 ```
 
 So to install say my basic-skill helper:
