@@ -23,6 +23,15 @@ Build the docker image in the directory that you have checked out.
 docker build -t mycroft .
 ```
 
+You can build a different version of the code by passing a build arg for the
+git branch or tag to checkout.
+
+```bash
+docker build -t mycroft --build-arg MYCROFT_VERSION=dev .
+# or for a particular release
+docker build -t mycroft --build-arg MYCROFT_VERSION=release/v19.2.2
+```
+
 ## Run
 To get persistent data and don't have, for example, to pair our instance every time the container is started. You can map a local directory into the container. Just replace the directory_on_local_machine with where you want the container mapped on your local machine (eg: /home/user/mycroft).
 

@@ -1,4 +1,5 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
+
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
@@ -10,10 +11,18 @@ RUN set -x \
 	&& apt-get -y install git python3 python3-pip locales sudo \
 	&& pip3 install future msm \
 	# Checkout Mycroft
-	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
-	&& cd /opt/mycroft \
+	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft
+
+# Set this on the command line to checkout out a different release/branch
+# eg docker build . --build-arg MYCROFT_VERSION=dev
+# eg docker build . --build-arg MYCROFT_VERSION=release/v19.2.2
+ARG MYCROFT_VERSION=master
+
+RUN cd /opt/mycroft \
+	&& git checkout $MYCROFT_VERSION\
 	&& mkdir /opt/mycroft/skills \
 	# git fetch && git checkout dev && \ this branch is now merged to master
+	&& export IS_TRAVIS=true \
 	&& /opt/mycroft/./dev_setup.sh --allow-root -sm \
 	&& mkdir /opt/mycroft/scripts/logs \
 	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
