@@ -5,24 +5,24 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install Server Dependencies for Mycroft
 RUN set -x \
-	&& sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list \
-	&& apt-get update \
-	&& apt-get -y install git python3 python3-pip locales sudo \
-	&& pip3 install future msm \
-	# Checkout Mycroft
-	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
-	&& cd /opt/mycroft \
-	&& mkdir /opt/mycroft/skills \
-	# git fetch && git checkout dev && \ this branch is now merged to master
-	&& CI=true /opt/mycroft/./dev_setup.sh --allow-root -sm \
-	&& mkdir /opt/mycroft/scripts/logs \
-	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-voice.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-skills.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-audio.log \
-	&& apt-get -y autoremove \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list \
+  && apt-get update \
+  && apt-get -y install git python3 python3-pip locales sudo \
+  && pip3 install future msm \
+  # Checkout Mycroft
+  && git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
+  && cd /opt/mycroft \
+  && mkdir /opt/mycroft/skills \
+  # git fetch && git checkout dev && \ this branch is now merged to master
+  && CI=true /opt/mycroft/./dev_setup.sh --allow-root -sm \
+  && mkdir /opt/mycroft/scripts/logs \
+  && touch /opt/mycroft/scripts/logs/mycroft-bus.log \
+  && touch /opt/mycroft/scripts/logs/mycroft-voice.log \
+  && touch /opt/mycroft/scripts/logs/mycroft-skills.log \
+  && touch /opt/mycroft/scripts/logs/mycroft-audio.log \
+  && apt-get -y autoremove \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null && \
     echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
@@ -39,10 +39,10 @@ COPY startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
-        && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
+  && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
 
 RUN chmod +x /opt/mycroft/start-mycroft.sh \
-	&& chmod +x /opt/mycroft/startup.sh
+  && chmod +x /opt/mycroft/startup.sh
 
 EXPOSE 8181
 
