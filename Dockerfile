@@ -16,6 +16,12 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
   && echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
 RUN apt-get update && apt-get install -y mimic
 
+# Set the locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # Clone and checkout Mycroft repository
 RUN git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft
 WORKDIR /opt/mycroft
@@ -26,12 +32,6 @@ RUN touch /opt/mycroft/scripts/logs/mycroft-bus.log
 RUN touch /opt/mycroft/scripts/logs/mycroft-voice.log
 RUN touch /opt/mycroft/scripts/logs/mycroft-skills.log
 RUN touch /opt/mycroft/scripts/logs/mycroft-audio.log
-
-# Set the locale
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 
 WORKDIR /opt/mycroft
 COPY startup.sh /opt/mycroft
