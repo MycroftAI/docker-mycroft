@@ -21,27 +21,30 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 # Clone and checkout Mycroft repository
-RUN git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft
 WORKDIR /opt/mycroft
-RUN mkdir /opt/mycroft/skills
-RUN CI=true ./dev_setup.sh --allow-root -sm
-RUN mkdir /opt/mycroft/scripts/logs
-RUN touch /opt/mycroft/scripts/logs/mycroft-bus.log
-RUN touch /opt/mycroft/scripts/logs/mycroft-voice.log
-RUN touch /opt/mycroft/scripts/logs/mycroft-skills.log
-RUN touch /opt/mycroft/scripts/logs/mycroft-audio.log
+RUN git clone https://github.com/MycroftAI/mycroft-core.git .
+RUN chmod +x ./start-mycroft.sh
+RUN mkdir skills
 
-WORKDIR /opt/mycroft
-COPY startup.sh /opt/mycroft
-ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
+# Install using wizard
+# y: use master branch
+# n: automatically update on Mycroft launch
+# y: add helper commands to PATH
+# n: check code style when submitting
+RUN echo ynyn | CI=true ./dev_setup.sh --allow-root -sm
+RUN mkdir scripts/logs
+RUN touch scripts/logs/mycroft-bus.log
+RUN touch scripts/logs/mycroft-voice.log
+RUN touch scripts/logs/mycroft-skills.log
+RUN touch scripts/logs/mycroft-audio.log
+COPY startup.sh .
+RUN chmod +x ./startup.sh
 
 RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
   && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
-
-RUN chmod +x /opt/mycroft/start-mycroft.sh \
-  && chmod +x /opt/mycroft/startup.sh
 
 EXPOSE 8181
 
