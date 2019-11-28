@@ -14,7 +14,7 @@ RUN set -x \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
 	# git fetch && git checkout dev && \ this branch is now merged to master
-	&& /opt/mycroft/./dev_setup.sh --allow-root -sm \
+	&& yes | /opt/mycroft/./dev_setup.sh --allow-root -sm \
 	&& mkdir /opt/mycroft/scripts/logs \
 	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
 	&& touch /opt/mycroft/scripts/logs/mycroft-voice.log \
