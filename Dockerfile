@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
@@ -41,4 +41,4 @@ RUN /bin/bash -c "source /opt/mycroft/.venv/bin/activate" \
 
 EXPOSE 8181
 
-ENTRYPOINT ["/bin/bash", "/opt/mycroft/startup.sh"]
+ENTRYPOINT "source /opt/mycroft/.venv/bin/activate && /opt/mycroft/startup.sh"]
