@@ -1,5 +1,5 @@
 #!/bin/bash
-trap exit SIGINT
-
+source /opt/mycroft/.venv/bin/activate
 /opt/mycroft/./start-mycroft.sh all
-tail -f /opt/mycroft/scripts/logs/mycroft-skills.log
+
+tail -f /var/log/mycroft/*.log
