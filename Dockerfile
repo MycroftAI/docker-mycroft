@@ -41,4 +41,4 @@ RUN /bin/bash -c "source /opt/mycroft/.venv/bin/activate" \
 
 EXPOSE 8181
 
-ENTRYPOINT "source /opt/mycroft/.venv/bin/activate && /opt/mycroft/startup.sh"
+ENTRYPOINT "/opt/mycroft/startup.sh"
