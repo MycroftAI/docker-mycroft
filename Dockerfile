@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,7 +14,7 @@ RUN set -x \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
 	# git fetch && git checkout dev && \ this branch is now merged to master
-	&& /opt/mycroft/./dev_setup.sh --allow-root -sm \
+	&& CI=true /opt/mycroft/./dev_setup.sh --allow-root -sm \
 	&& mkdir /opt/mycroft/scripts/logs \
 	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
 	&& touch /opt/mycroft/scripts/logs/mycroft-voice.log \
@@ -34,11 +34,11 @@ WORKDIR /opt/mycroft
 COPY startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
-RUN /bin/bash -c "source /opt/mycroft/.venv/bin/activate" \
-    chmod +x /opt/mycroft/start-mycroft.sh \
-	&& chmod +x /opt/mycroft/startup.sh \
-	&& /bin/bash /opt/mycroft/start-mycroft.sh all
+RUN echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
+
+RUN chmod +x /opt/mycroft/start-mycroft.sh \
+	&& chmod +x /opt/mycroft/startup.sh
 
 EXPOSE 8181
 
-ENTRYPOINT ["/bin/bash", "/opt/mycroft/startup.sh"]
+ENTRYPOINT "/opt/mycroft/startup.sh"

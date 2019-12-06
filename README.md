@@ -77,6 +77,13 @@ You can hit ctrl + c to exit the cli.
 ## Pairing Instance
 After the container has been started you can watch the logs and look for the line that says Pairing Code and use this to pair at https://home.mycroft.ai.
 
+You can filter the logs to get the pairing code as such:
+
+```bash
+docker logs mycroft | grep "Pairing code:"
+
+```
+
 ## Skills
 You can watch the logs and confirm it installs/deletes skills.
 
