@@ -34,7 +34,8 @@ WORKDIR /opt/mycroft
 COPY startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
-RUN echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
+RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
+        && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
 
 RUN chmod +x /opt/mycroft/start-mycroft.sh \
 	&& chmod +x /opt/mycroft/startup.sh
