@@ -2,19 +2,23 @@ FROM ubuntu:18.04
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
+RUN set -x
 
-# Install packages required by Mycroft
-RUN set -x \
+# Install system packages required by Mycroft
+RUN apt-get update \
   && sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list \
-  && apt-get update \
-  && apt-get -y install git python3 python3-pip locales sudo \
-  && pip3 install future msm \
+  && apt-get -y install sudo locales curl git python3 python3-pip \
   && apt-get -y autoremove \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null \
-  && echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
-RUN apt-get update && apt-get install -y mimic
+RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null
+RUN echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
+RUN apt-get update \
+  && apt-get -y install mimic \
+  && apt-get clean
+
+# Install python packages
+RUN pip3 install future msm
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
