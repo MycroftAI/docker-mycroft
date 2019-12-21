@@ -37,7 +37,6 @@ ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 # Clone and checkout Mycroft repository
 WORKDIR /opt/mycroft
 RUN git clone https://github.com/MycroftAI/mycroft-core.git .
-RUN mkdir skills
 
 # Install using wizard
 # ynyn: see WIZARD_SECUENCE build-arg
