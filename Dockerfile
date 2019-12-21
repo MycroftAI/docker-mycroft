@@ -1,5 +1,12 @@
 FROM ubuntu:18.04
 
+# simulate keyboard input during install wizard
+# y: use master branch
+# n: automatically update on Mycroft launch
+# y: add helper commands to PATH
+# n: check code style when submitting
+ARG WIZARD_SECUENCE=ynyn
+
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 RUN set -x
@@ -34,11 +41,10 @@ RUN chmod +x ./start-mycroft.sh
 RUN mkdir skills
 
 # Install using wizard
-# y: use master branch
-# n: automatically update on Mycroft launch
-# y: add helper commands to PATH
-# n: check code style when submitting
-RUN echo ynyn | CI=true ./dev_setup.sh --allow-root -sm
+# ynyn: see WIZARD_SECUENCE build-arg
+# -sm: skip building mimic locally
+# --allow-root:
+RUN echo ynyn | ./dev_setup.sh --allow-root -sm
 RUN mkdir scripts/logs
 RUN touch scripts/logs/mycroft-bus.log
 RUN touch scripts/logs/mycroft-voice.log
