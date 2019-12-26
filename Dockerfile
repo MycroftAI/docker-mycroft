@@ -51,8 +51,10 @@ RUN touch scripts/logs/mycroft-audio.log
 COPY startup.sh .
 RUN chmod +x ./startup.sh
 
-RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
-  && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
+RUN echo -e "\
+  PATH=$PATH:/opt/mycroft/bin \n\
+  source /opt/mycroft/.venv/bin/activate \n\
+" >> $HOME/.bashrc
 
 EXPOSE 8181
 
