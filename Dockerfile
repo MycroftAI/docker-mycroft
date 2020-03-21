@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 # n: automatically update on Mycroft launch
 # y: add helper commands to PATH
 # n: check code style when submitting
-ARG WIZARD_SECUENCE=ynyn
+ARG WIZARD_SEQUENCE=ynyn
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
@@ -39,10 +39,10 @@ WORKDIR /opt/mycroft
 RUN git clone https://github.com/MycroftAI/mycroft-core.git .
 
 # Install using wizard
-# ynyn: see WIZARD_SECUENCE build-arg
+# ynyn: see WIZARD_SEQUENCE build-arg
 # -sm: skip building mimic locally
 # --allow-root:
-RUN echo ynyn | ./dev_setup.sh --allow-root -sm
+RUN echo $WIZARD_SEQUENCE | ./dev_setup.sh --allow-root -sm
 RUN mkdir scripts/logs
 RUN touch scripts/logs/mycroft-bus.log
 RUN touch scripts/logs/mycroft-voice.log
