@@ -24,7 +24,7 @@ docker build -t mycroft .
 ```
 
 ## Run
-To get persistent data and don't have, for example, to pair our instance every time the container is started. You can map a local directory into the container. Just replace the directory_on_local_machine with where you want the container mapped on your local machine (eg: /home/user/mycroft).
+To get persistent data and don't have, for example, to pair our instance every time the container is started. You can map a local directory into the container. Just replace the `config_dir_on_host` with where you want the container mapped on your local machine (e.g. `/home/user/mycroft`). To get persistent storage of non-default skills, so that they don't have to be re-installed every time the container is started, we map the container's `skills` directory to a local directory. Just replace the `skills_dir_on_host` with the desired location (e.g. `/home/user/mycroft_skills`).
 
 Sounds can be played in the container using pulseaudio, without modifying any config files (Thanks to [fsmunoz](https://github.com/jessfraz/dockerfiles/issues/85#issuecomment-299431931)).
 
@@ -35,7 +35,8 @@ Run the following to start up mycroft:
 
 ```bash
 docker run -d \
--v directory_on_local_machine:/root/.mycroft \
+-v config_dir_on_host:/root/.mycroft \
+-v skills_dir_on_host:/opt/mycroft/skills \
 --device /dev/snd \
 -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
 -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
