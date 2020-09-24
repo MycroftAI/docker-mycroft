@@ -98,14 +98,14 @@ docker exec -it mycroft /usr/local/bin/msm install github_url
 So to install say my basic-skill helper:
 
 ```bash
-docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/btotharye/mycroft-skill-basichelp
+docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/MycroftAI/skill-hello-world
 ```
 
 ### Remove
 You can uninstall a skill by removing the folder location for it
 
 ```bash
-docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-skill-basichelp
+docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-hello-world.mycroftai
 ```
 
 This would remove the above test basic help skill.
