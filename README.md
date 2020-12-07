@@ -89,23 +89,32 @@ docker logs mycroft | grep "Pairing code:"
 You can watch the logs and confirm it installs/deletes skills.
 
 ### Install
-You can install skills into the container from outside by running the following:
+You can install skills into the container with the Mycroft Skills Manager (MSM):
 
 ```bash
-docker exec -it mycroft /usr/local/bin/msm install github_url
+docker exec -it mycroft /opt/mycroft/bin/mycroft-msm install skill-name
 ```
 
-So to install say my basic-skill helper:
+So to install the Hello World Skill we can use:
 
 ```bash
-docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/MycroftAI/skill-hello-world
+docker exec -it mycroft /opt/mycroft/bin/mycroft-msm install hello-world
 ```
+
+For development purposes you can also install Skills directly from Github. So if the Hello World Skill was not in the Mycroft Marketplace, we could use the following:
+
+```bash
+docker exec -it mycroft /opt/mycroft/bin/mycroft-msm install https://github.com/MycroftAI/skill-hello-world
+```
+
+_Please note: only Skills in the Mycroft Marketplace have been reviewed and verified. We strongly recommend carefully reviewing the code of any Skill you are installing from outside of the Marketplace. This is done completely at your own risk._
 
 ### Remove
-You can uninstall a skill by removing the folder location for it
+You can uninstall a Skill using MSM or by removing the folder location for it:
 
 ```bash
+docker exec -it mycroft /opt/mycroft/bin/mycroft-msm remove hello-world
 docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-hello-world.mycroftai
 ```
 
-This would remove the above test basic help skill.
+Both of these commands would remove the Hello World Skill.
