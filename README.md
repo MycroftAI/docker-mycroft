@@ -37,6 +37,7 @@ Run the following to start up mycroft:
 docker run -d \
 -v config_dir_on_host:/root/.mycroft \
 -v skills_dir_on_host:/opt/mycroft/skills \
+--mount type=tmpfs,destination=/tmp \
 --device /dev/snd \
 -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
 -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
